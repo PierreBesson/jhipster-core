@@ -52,42 +52,6 @@ describe('JDLValidation', () => {
       });
     });
   });
-  describe('::isValid', () => {
-    context('when checking the validity of an invalid object', () => {
-      context('because it is nil or invalid', () => {
-        it('returns false', () => {
-          expect(JDLValidation.isValid(null)).to.be.false;
-          expect(JDLValidation.isValid(undefined)).to.be.false;
-        });
-      });
-      context('without a name attribute', () => {
-        it('returns false', () => {
-          expect(JDLValidation.isValid({})).to.be.false;
-        });
-      });
-      context('without a valid name attribute', () => {
-        it('returns false', () => {
-          expect(JDLValidation.isValid({ name: 'something' })).to.be.false;
-        });
-      });
-      context('with a valid name but an invalid value', () => {
-        it('returns false', () => {
-          expect(JDLValidation.isValid({ name: Validations.MIN })).to.be.false;
-        });
-      });
-    });
-    context('when checking the validity of a valid object', () => {
-      it('returns true', () => {
-        expect(JDLValidation.isValid({ name: Validations.REQUIRED })).to.be.true;
-        expect(
-          JDLValidation.isValid({
-            name: Validations.MIN,
-            value: 42
-          })
-        ).to.be.true;
-      });
-    });
-  });
   describe('#toString', () => {
     context('with no value', () => {
       let validation = null;

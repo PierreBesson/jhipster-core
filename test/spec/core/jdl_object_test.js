@@ -43,7 +43,7 @@ describe('JDLObject', () => {
         it('fails', () => {
           expect(() => {
             object.addApplication(null);
-          }).to.throw('The application must be valid in order to be added to the JDL object.\nErrors: No application');
+          }).to.throw('An application has to be passed to be added to the JDL object.');
         });
       });
       context('such as an incomplete application', () => {
@@ -207,25 +207,23 @@ describe('JDLObject', () => {
         it('fails', () => {
           expect(() => {
             object.addEntity(null);
-          }).to.throw('The entity must be valid in order to be added to the JDL object.\nErrors: No entity');
+          }).to.throw('An entity has to be passed to be added to the JDL object.');
         });
       });
       context('such as an incomplete entity', () => {
         expect(() => {
           object.addEntity({
-            name: 'Something',
             tableName: 't_something',
             fields: [
               {
+                name: 'myField',
                 type: 'String',
                 comment: 'comment',
                 validations: []
               }
             ]
           });
-        }).to.throw(
-          'The entity must be valid in order to be added to the JDL object.\nErrors: For field #1: No field name'
-        );
+        }).to.throw('The entity must be valid in order to be added to the JDL object.\nErrors: No entity name');
       });
     });
     context('when adding a valid entity', () => {
